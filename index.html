@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPS GAME</title>
+  </head>
+  <body>
+    <h1>ROCK PAPER SCISSOR GAME!!!</h1>
+    <script>
+      getComputerChoice = function () {
+        let variable = Math.floor(Math.random() * 3);
+        if (variable == 0) {
+          return "rock";
+        }
+        if (variable == 1) {
+          return "paper";
+        }
+        if (variable == 2) {
+          return "scissor";
+        }
+      };
+
+      function getHumanChoice() {
+        let choice = prompt("enter choice, ROCK OR PAPER OR SCISSOR");
+        choice = choice.toLowerCase();
+        if (choice == "rock") {
+          return "rock";
+        }
+        if (choice == "paper") {
+          return "paper";
+        }
+        if (choice == "scissor") {
+          return "scissor";
+        }
+      }
+
+      function playGame() {
+        let humanScore = 0;
+        let computerScore = 0;
+        function playRound(humanChoice, computerChoice) {
+          if (
+            (humanChoice == "rock" && computerChoice == "scissor") ||
+            (humanChoice == "paper" && computerChoice == "rock") ||
+            (humanChoice == "scissor" && computerChoice == "paper")
+          ) {
+            console.log(
+              `YOUR SELECITON = ${humanChoice}|COMPUTER SELECTION = ${computerChoice}`
+            );
+            console.log("YOU WIN!");
+            humanScore += 1;
+            console.log(
+              `YOUR SCORE=${humanScore}, COMPUTER SCORE=${computerScore}`
+            );
+          } else if (humanChoice == computerChoice) {
+            console.log(
+              `YOUR SELECITON = ${humanChoice}|COMPUTER SELECTION = ${computerChoice}`
+            );
+            console.log("IT'S A TIE!");
+            console.log(
+              `YOUR SCORE=${humanScore}, COMPUTER SCORE=${computerScore}`
+            );
+          } else {
+            console.log(
+              `YOUR SELECITON = ${humanChoice}|COMPUTER SELECTION = ${computerChoice}`
+            );
+            console.log("YOU LOSE!");
+            computerScore += 1;
+            console.log(
+              `YOUR SCORE=${humanScore}, COMPUTER SCORE=${computerScore}`
+            );
+          }
+        }
+        for (let i = 0; i < 5; i++) {
+          const humanSelection = getHumanChoice();
+          const computerSelection = getComputerChoice();
+          playRound(humanSelection, computerSelection);
+        }
+      }
+      playGame();
+    </script>
+  </body>
+</html>
